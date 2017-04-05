@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <title>puissance_4</title>
+    <link rel="stylesheet" href="./css/style.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+</head>
+
+<body>
+    <table id="butt">
+
+    </table>
+    <table id="puissance">
+
+    </table>
+</body>
+<script type="text/javascript">
+    $(document).ready(function() {
+
+
+        // button du tableau
+        // console.log(tableau[k][this.innerHTML]);
+        var count = 1;
+        var changeCellule = null;
+        var pointRY = 0;
+        var pointRX = 0;
+        var pointYY = 0;
+        var pointYX = 0;
+
+
+
+        for (k = 0; k < 7; k++) {
+            var button = $('<button>' + k + '</button>')
+            // var button = document.createElement("button");
+            // button.innerHTML = k;
+            var bodyElement = $("#butt")
+            // var bodyElement = document.getElementById("butt")
+            bodyElement.append(button)
+            button.click(function(){
+                var l = 5;
+                while(tableau[l][$(this).html()] != ""){
+                    l--;
+                }
+                if (count == 1 ) {
+                    tableau[l][$(this).html()] ="R";
+                    changeCellule = $("#card" + l +"-" + $(this).html());
+                    changeCellule.addClass('rouge');
+                    count ++;
+                }else if(count == 2){
+                    tableau[l][$(this).html()] = "Y";
+                    changeCellule = $("#card" + l +"-" + $(this).html());
+                    changeCellule.addClass('jaune');
+                    count = 1;
+                }
+            });
+        }
+
+
+    var tableau = [
+        ["", "", "", "", "", "", ""],
+        ["", "", "", "", "", "", ""],
+        ["", "", "", "", "", "", ""],
+        ["", "", "", "", "", "", ""],
+        ["", "", "", "", "", "", ""],
+        ["", "", "", "", "", "", ""]
+    ];
+
+    var tableElement = $("#puissance");
+    // var tableElement = document.getElementById("puissance");
+
+
+    // lignes du tableau.
+    for (i = 0; i < tableau.length; i++) {
+        var ligne = $("<tr></tr>")
+
+        // cellule du tableau
+        for (j = 0; j < tableau[i].length; j++) {
+            var cellule = $("<td></td>")
+            cellule.id = "card" + i + "-" + j;
+            ligne.append(cellule);
+            tableElement.append(ligne);
+        }
+    }
+    });
+</script>
+
+</html>
